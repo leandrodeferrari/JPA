@@ -1,8 +1,10 @@
 package ejercicio1;
 
+import ejercicio1.presentacion.Menu;
+
 public class Ejercicio1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         
         /*
         
@@ -107,11 +109,11 @@ public class Ejercicio1 {
         
         1) Crear base de datos Librería
         2) Crear unidad de persistencia
-        3) Crear entidades previamente mencionadas ( excepto Préstamo ) 
+        3) Crear entidades previamente mencionadas
         4) Generar las tablas con JPA
         5) Crear servicios previamente mencionados.
         6) Crear los métodos para persistir entidades en la base de datos librería
-        7) Crear los métodos para dar de alta/bajo o editar dichas entidades.
+        7) Crear los métodos para dar de alta/baja o editar dichas entidades.
         8) Búsqueda de un Autor por nombre.
         9) Búsqueda de un libro por ISBN.
         10) Búsqueda de un libro por Título.
@@ -122,6 +124,17 @@ public class Ejercicio1 {
         b) No ingresar datos duplicados. 
         
         */
+        
+        Menu menu = new Menu();
+        menu.ejecutarMenu();
+        
+        // Error en menuCreacion/Opcion3/GuardarLibro/PK
+        // Error al querer hacer la opcion 1/No lo puede castear
+        // Error no puedo buscar por ISBN, ya que no tengo libros (Me funciona bien la excepcion)
+        // Error encontrarLibroPorTitulo/No lo castea. Aunque, me tendría que arrojar una excepcion, en vez de eso 
+        // Error encontrarPorNombreDeAutor No me castea. Igual que arriba
+        // Error encontrarLibroPorNombreDeEditorial No me castea. Igual que arriba
+        
         
     }
     

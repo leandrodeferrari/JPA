@@ -13,18 +13,20 @@ public class Editorial implements Serializable{
     @Column(name = "id_editorial")
     private Integer id;
     @Basic
+    @Column(name = "nombre")
     private String nombre;
-    private boolean alta;
+    @Column(name = "alta")
+    private Boolean alta;
 
     public Editorial() {
     }
 
-    public Editorial(String nombre, boolean alta) {
+    public Editorial(String nombre, Boolean alta) {
         this.nombre = nombre;
         this.alta = alta;
     }
 
-    public Editorial(Integer id, String nombre, boolean alta) {
+    public Editorial(Integer id, String nombre, Boolean alta) {
         this.id = id;
         this.nombre = nombre;
         this.alta = alta;
@@ -46,11 +48,11 @@ public class Editorial implements Serializable{
         this.nombre = nombre;
     }
 
-    public boolean isAlta() {
+    public Boolean isAlta() {
         return alta;
     }
 
-    public void setAlta(boolean alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 

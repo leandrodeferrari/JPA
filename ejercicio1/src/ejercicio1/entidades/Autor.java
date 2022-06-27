@@ -13,18 +13,20 @@ public class Autor implements Serializable{
     @Column(name = "id_autor")
     private Integer id;
     @Basic
+    @Column(name = "nombre")
     private String nombre;
-    private boolean alta;
+    @Column(name = "alta")
+    private Boolean alta;
 
     public Autor() {
     }
 
-    public Autor(String nombre, boolean alta) {
+    public Autor(String nombre, Boolean alta) {
         this.nombre = nombre;
         this.alta = alta;
     }
 
-    public Autor(Integer id, String nombre, boolean alta) {
+    public Autor(Integer id, String nombre, Boolean alta) {
         this.id = id;
         this.nombre = nombre;
         this.alta = alta;
@@ -46,11 +48,11 @@ public class Autor implements Serializable{
         this.nombre = nombre;
     }
 
-    public boolean isAlta() {
+    public Boolean isAlta() {
         return alta;
     }
 
-    public void setAlta(boolean alta) {
+    public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 
