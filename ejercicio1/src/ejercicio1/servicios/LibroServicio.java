@@ -23,7 +23,7 @@ public class LibroServicio {
         AutorServicio autorServicio = new AutorServicio();
         EditorialServicio editorialServicio = new EditorialServicio();
         String tituloLibro;
-        Integer anioLibro, ejemplaresLibro;
+        Integer anioLibro, ejemplaresLibro, idAutor, idEditorial;
         Boolean alta = true;
 
         System.out.println("Ingrese el título del libro:");
@@ -34,10 +34,16 @@ public class LibroServicio {
 
         System.out.println("Ingrese los ejemplares del libro:");
         ejemplaresLibro = leer.nextInt();
-
-        Autor autor = autorServicio.crearAutor();
-
-        Editorial editorial = editorialServicio.crearEditorial();
+        
+        System.out.println("Ingrese el id de su autor");
+        idAutor = leer.nextInt();
+        
+        Autor autor = autorServicio.traerAutorPorId(idAutor);
+        
+        System.out.println("Ingrese el id de su editorial");
+        idEditorial = leer.nextInt();
+        
+        Editorial editorial = editorialServicio.traerAutorPorId(idEditorial);
 
         Libro libro = new Libro(tituloLibro, anioLibro, ejemplaresLibro, alta, autor, editorial);
 
@@ -47,9 +53,9 @@ public class LibroServicio {
 
     public void guardarLibro() throws Exception {
         Libro libro = crearLibro();
-        libroJpa.create(libro);
+        libroDao.guardar(libro);
     }
-    
+
     public void darDeAltaLibro() throws Exception {
 
         Long isbn;
@@ -131,9 +137,13 @@ public class LibroServicio {
 
         List<Libro> libros = libroDao.encontrarLibrosPorNombreAutor(nombreAutor);
 
-        libros.forEach((libro) -> {
-            System.out.println(libro.toString());
-        });
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros de dicho autor");
+        } else {
+            libros.forEach((libro) -> {
+                System.out.println(libro.toString());
+            });
+        }
 
     }
 
@@ -146,9 +156,13 @@ public class LibroServicio {
 
         List<Libro> libros = libroDao.encontrarLibrosPorNombreEditorial(nombreEditorial);
 
-        libros.forEach((libro) -> {
-            System.out.println(libro.toString());
-        });
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros de dicha editorial");
+        } else {
+            libros.forEach((libro) -> {
+                System.out.println(libro.toString());
+            });
+        }
 
     }
 

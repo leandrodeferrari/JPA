@@ -129,11 +129,9 @@ public class Ejercicio1 {
         menu.ejecutarMenu();
         
         // Error en menuCreacion/Opcion3/GuardarLibro/PK
-        // Error al querer hacer la opcion 1/No lo puede castear
         // Error no puedo buscar por ISBN, ya que no tengo libros (Me funciona bien la excepcion)
         // Error encontrarLibroPorTitulo/No lo castea. Aunque, me tendría que arrojar una excepcion, en vez de eso 
-        // Error encontrarPorNombreDeAutor No me castea. Igual que arriba
-        // Error encontrarLibroPorNombreDeEditorial No me castea. Igual que arriba
+        
         
         
     }

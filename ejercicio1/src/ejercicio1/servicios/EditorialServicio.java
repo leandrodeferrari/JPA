@@ -76,4 +76,9 @@ public class EditorialServicio {
 
     }
 
+       public Editorial traerAutorPorId(int id){
+        Editorial editorial = editorialDao.encontrarEditorialPorId(id);
+        return editorial;
+    }
+    
 }

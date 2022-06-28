@@ -23,11 +23,21 @@ public class AutorDaoExt extends Dao<Autor>{
     public List<Autor> encontrarAutorPorNombre(String nombre){
         
         conectar();
-        List<Autor> autores = (List<Autor>) (Autor) em.createQuery
+        List<Autor> autores = em.createQuery
         ("SELECT a FROM Autor a WHERE a.nombre = :nombre").setParameter("nombre", nombre).getResultList();
         desconectar();
         
         return autores;
+        
+    }
+    
+    public Autor encontrarAutorPorId(int id){
+        conectar();
+        Autor autor = (Autor) em.createQuery
+        ("SELECT a FROM Autor a WHERE a.id = :id").setParameter("id", id).getSingleResult();
+        desconectar();
+        
+        return autor;
         
     }
     

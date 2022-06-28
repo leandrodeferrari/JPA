@@ -95,5 +95,10 @@ public class AutorServicio {
         }
 
     }
-
+    
+    public Autor traerAutorPorId(int id){
+        Autor autor = autorDao.encontrarAutorPorId(id);
+        return autor;
+    }
+    
 }
