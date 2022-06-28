@@ -32,9 +32,10 @@ public class AutorServicio {
 
     }
 
-    public void guardarAutor() throws Exception{
+    public Autor guardarAutor() throws Exception{
         Autor autor = crearAutor();
         autorJpa.create(autor);
+        return autor;
     }
     
     public void darDeAltaAutor() throws Exception {
@@ -98,6 +99,7 @@ public class AutorServicio {
     
     public Autor traerAutorPorId(int id){
         Autor autor = autorDao.encontrarAutorPorId(id);
+        System.out.println(autor);
         return autor;
     }
     

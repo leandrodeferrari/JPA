@@ -18,22 +18,30 @@ public class LibroServicio {
         this.libroJpa = new LibroJpaController();
     }
 
-    public Libro crearLibro() {
+    public Libro crearLibro() throws Exception {
 
         AutorServicio autorServicio = new AutorServicio();
         EditorialServicio editorialServicio = new EditorialServicio();
         String tituloLibro;
         Integer anioLibro, ejemplaresLibro, idAutor, idEditorial;
         Boolean alta = true;
+        Long isbn;
 
         System.out.println("Ingrese el título del libro:");
         tituloLibro = leer.next();
-
+        
+        System.out.println("ingrese su ISBN");
+        isbn = leer.nextLong();
+        
         System.out.println("Ingrese el año del libro:");
         anioLibro = leer.nextInt();
 
         System.out.println("Ingrese los ejemplares del libro:");
         ejemplaresLibro = leer.nextInt();
+        
+//        Autor autor = autorServicio.guardarAutor();
+//        
+//        Editorial editorial = editorialServicio.guardarEditorial();
         
         System.out.println("Ingrese el id de su autor");
         idAutor = leer.nextInt();
@@ -45,7 +53,7 @@ public class LibroServicio {
         
         Editorial editorial = editorialServicio.traerAutorPorId(idEditorial);
 
-        Libro libro = new Libro(tituloLibro, anioLibro, ejemplaresLibro, alta, autor, editorial);
+        Libro libro = new Libro(isbn, tituloLibro, anioLibro, ejemplaresLibro, autor, editorial);
 
         return libro;
 

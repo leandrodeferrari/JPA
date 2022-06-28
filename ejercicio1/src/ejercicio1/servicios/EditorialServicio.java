@@ -31,9 +31,10 @@ public class EditorialServicio {
 
     }
 
-    public void guardarEditorial() throws Exception{
+    public Editorial guardarEditorial() throws Exception{
         Editorial editorial = crearEditorial();
         editorialJpa.create(editorial);
+        return editorial;
     }
     
     public void darDeAltaLaEditorial() throws Exception {

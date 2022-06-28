@@ -36,7 +36,7 @@ public class AutorDaoExt extends Dao<Autor>{
         Autor autor = (Autor) em.createQuery
         ("SELECT a FROM Autor a WHERE a.id = :id").setParameter("id", id).getSingleResult();
         desconectar();
-        
+        System.out.println(autor);
         return autor;
         
     }
