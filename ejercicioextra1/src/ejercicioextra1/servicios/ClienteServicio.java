@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class ClienteServicio {
     
     private final Scanner SC = new Scanner(System.in).useDelimiter("\n");
-    private ClienteDAO clienteDao;
+    private final ClienteDAO CLIENTE_DAO;
 
     public ClienteServicio() {
-        this.clienteDao = new ClienteDAO();
+        this.CLIENTE_DAO = new ClienteDAO();
     }
     
     public Cliente crearCliente(){
@@ -31,6 +31,28 @@ public class ClienteServicio {
         telefono = SC.next();
         
         return new Cliente(documentoIdentidad, nombre, apellido, telefono);
+        
+    }
+    
+    public void ingresarCliente(){
+        
+        Cliente cliente = crearCliente();
+        
+        if(cliente != null){
+            CLIENTE_DAO.guardar(cliente);
+        } else if(cliente == null){
+            throw new NullPointerException("No ha cargado correctamente el cliente");
+        }
+        
+    }
+ 
+    public void ingresarCliente(Cliente cliente){
+        
+        if(cliente != null){
+            CLIENTE_DAO.guardar(cliente);
+        } else if(cliente == null){
+            throw new NullPointerException("No ha cargado correctamente el cliente");
+        }
         
     }
     

@@ -1,5 +1,7 @@
 package ejercicioextra1;
 
+import ejercicioextra1.presentacion.Menu;
+
 public class EjercicioExtra1 {
 
     public static void main(String[] args) {
@@ -61,11 +63,10 @@ public class EjercicioExtra1 {
         ejemplares de los que hay, ni devolver más de los que se encuentran prestados. 
         No se podrán prestar libros con fecha anterior a la fecha actual, etc.
         
-        
-        
-        
-        
         */
+        
+        Menu menu = new Menu();
+        menu.ejecutarMenu();
         
     }
     

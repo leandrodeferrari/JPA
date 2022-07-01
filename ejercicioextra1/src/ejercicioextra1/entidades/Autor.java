@@ -4,11 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@Table (name = "Autor")
 public class Autor implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_autor")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_AUTOR")
     private Integer id;
     private String nombre;
 

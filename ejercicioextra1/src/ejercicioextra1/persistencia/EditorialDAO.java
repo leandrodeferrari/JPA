@@ -19,4 +19,16 @@ public class EditorialDAO extends DAO<Editorial>{
         super.eliminar(editorial);
     }
     
+    public Editorial encontrarEditorialPorId(Integer id){
+        
+        Editorial editorial = this.em.find(Editorial.class, id);
+        
+        if(editorial != null){
+            return editorial;
+        } else {
+            throw new NullPointerException("Lo siento, no existe editorial con ese ID.");
+        }
+        
+    }
+    
 }

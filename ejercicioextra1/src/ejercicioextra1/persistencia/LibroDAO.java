@@ -19,4 +19,16 @@ public class LibroDAO extends DAO<Libro>{
         super.eliminar(libro);
     }
     
+    public Libro encontrarLibroPorId(Long isbn){
+        
+        Libro libro = this.em.find(Libro.class, isbn);
+        
+        if(libro != null){
+            return libro;
+        } else {
+            throw new NullPointerException("Lo siento, no existe libro con ese ISBN.");
+        }
+        
+    }
+    
 }

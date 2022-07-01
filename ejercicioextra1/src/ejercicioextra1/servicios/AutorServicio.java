@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class AutorServicio {
     
     private final Scanner SC = new Scanner(System.in).useDelimiter("\n");
-    private AutorDAO autorDao;
+    private final AutorDAO AUTOR_DAO;
 
     public AutorServicio() {
-        this.autorDao = new AutorDAO();
+        this.AUTOR_DAO = new AutorDAO();
     }
     
     public Autor crearAutor(){
@@ -21,6 +21,28 @@ public class AutorServicio {
         nombreAutor = SC.next();
         
         return new Autor(nombreAutor);
+        
+    }
+    
+    public void ingresarAutor(){
+        
+        Autor autor = crearAutor();
+        
+        if(autor != null){
+            AUTOR_DAO.guardar(autor);
+        } else if(autor == null){
+            throw new NullPointerException("No ha cargado correctamente el autor");
+        }
+        
+    }
+    
+    public void ingresarAutor(Autor autor){
+                
+        if(autor != null){
+            AUTOR_DAO.guardar(autor);
+        } else if(autor == null){
+            throw new NullPointerException("No ha cargado correctamente el autor");
+        }
         
     }
     

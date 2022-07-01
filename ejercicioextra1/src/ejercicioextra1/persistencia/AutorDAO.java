@@ -19,4 +19,16 @@ public class AutorDAO extends DAO<Autor>{
         super.eliminar(autor);
     }
     
+    public Autor encontrarAutorPorId(Integer id){
+        
+        Autor autor = this.em.find(Autor.class, id);
+        
+        if(autor != null){
+            return autor;
+        } else {
+            throw new NullPointerException("Lo siento, no existe autor con ese ID.");
+        }
+        
+    }
+    
 }

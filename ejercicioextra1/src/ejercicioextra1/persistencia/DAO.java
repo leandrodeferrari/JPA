@@ -46,7 +46,8 @@ public class DAO<T>{
         
         conectar();
         em.getTransaction().begin();
-        em.remove(objeto);
+        T objeto1 = em.merge(objeto);
+        em.remove(objeto1);
         em.getTransaction().commit();
         desconectar();
         

@@ -1,27 +1,28 @@
 package ejercicioextra1.entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.*;
 
 @Entity
+@Table (name = "Prestamo")
 public class Prestamo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_prestamo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_PRESTAMO")
     private Integer id;
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_prestamo")
+    @Column(name = "FECHA_PRESTAMO")
     private Date fechaPrestamo;
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_devolucion")
+    @Column(name = "FECHA_DEVOLUCION")
     private Date fechaDevolucion;
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "libro")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="LIBRO")
     private Libro libro;
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "cliente")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="CLIENTE")
     private Cliente cliente;
 
     public Prestamo() {

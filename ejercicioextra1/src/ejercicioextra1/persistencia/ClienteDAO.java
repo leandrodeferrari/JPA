@@ -19,4 +19,16 @@ public class ClienteDAO extends DAO<Cliente>{
         super.eliminar(cliente);
     }
     
+    public Cliente encontrarClientePorId(Integer id){
+        
+        Cliente cliente = this.em.find(Cliente.class, id);
+        
+        if(cliente != null){
+            return cliente;
+        } else {
+            throw new NullPointerException("Lo siento, no existe cliente con ese ID.");
+        }
+        
+    }
+    
 }

@@ -7,20 +7,42 @@ import java.util.Scanner;
 public class EditorialServicio {
     
     private final Scanner SC = new Scanner(System.in).useDelimiter("\n");
-    private EditorialDAO editorialDao;
+    private final EditorialDAO EDITORIAL_DAO;
 
     public EditorialServicio() {
-        this.editorialDao = new EditorialDAO();
+        this.EDITORIAL_DAO = new EditorialDAO();
     }
     
     public Editorial crearEditorial(){
         
         String nombre;
         
-        System.out.println("Ingrese el nombre de al editorial:");
+        System.out.println("Ingrese el nombre de la editorial:");
         nombre = SC.next();
         
         return new Editorial(nombre);
+        
+    }
+    
+    public void ingresarEditorial(){
+        
+        Editorial editorial = crearEditorial();
+        
+        if(editorial != null){
+            EDITORIAL_DAO.guardar(editorial);
+        } else if(editorial == null){
+            throw new NullPointerException("No ha cargado correctamente la editorial");
+        }
+        
+    }
+ 
+    public void ingresarEditorial(Editorial editorial){
+        
+        if(editorial != null){
+            EDITORIAL_DAO.guardar(editorial);
+        } else if(editorial == null){
+            throw new NullPointerException("No ha cargado correctamente la editorial");
+        }
         
     }
     

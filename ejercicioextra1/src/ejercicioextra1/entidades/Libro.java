@@ -4,23 +4,24 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@Table (name = "Libro")
 public class Libro implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long isbn;
     private String titulo;
     private Integer anio;
     private Integer ejemplares;
-    @Column(name = "ejemplares_prestados")
+    @Column(name = "EJEMPLARES_PRESTADOS")
     private Integer ejemplaresPrestados;
-    @Column(name = "ejemplares_restantes")
+    @Column(name = "EJEMPLARES_RESTANTES")
     private Integer ejemplaresRestantes;
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "autor")
+    @JoinColumn(name = "AUTOR")
     private Autor autor;
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "editorial")
+    @JoinColumn(name = "EDITORIAL")
     private Editorial editorial;
 
     public Libro() {

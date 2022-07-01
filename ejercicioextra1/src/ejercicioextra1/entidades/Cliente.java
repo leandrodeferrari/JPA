@@ -4,13 +4,14 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@Table (name = "Cliente") 
 public class Cliente implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_cliente")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_CLIENTE")
     private Integer id;
-    @Column(name = "documento_de_identidad")
+    @Column(name = "DOCUMENTO_DE_IDENTIDAD")
     private Long documentoDeIdentidad;
     private String nombre;
     private String apellido;
