@@ -2,6 +2,7 @@ package ejercicioextra1.servicios;
 
 import ejercicioextra1.entidades.Editorial;
 import ejercicioextra1.persistencia.EditorialDAO;
+import ejercicioextra1.servicios.excepciones.EditorialExcepcion;
 import java.util.Scanner;
 
 public class EditorialServicio {
@@ -20,6 +21,10 @@ public class EditorialServicio {
         System.out.println("Ingrese el nombre de la editorial:");
         nombre = SC.next();
         
+        if(nombre == null || nombre.isEmpty()){
+            throw new EditorialExcepcion("Ha ingresado un nombre inválido");
+        }
+        
         return new Editorial(nombre);
         
     }
@@ -31,7 +36,7 @@ public class EditorialServicio {
         if(editorial != null){
             EDITORIAL_DAO.guardar(editorial);
         } else if(editorial == null){
-            throw new NullPointerException("No ha cargado correctamente la editorial");
+            throw new EditorialExcepcion("No ha cargado correctamente la editorial");
         }
         
     }
@@ -41,7 +46,7 @@ public class EditorialServicio {
         if(editorial != null){
             EDITORIAL_DAO.guardar(editorial);
         } else if(editorial == null){
-            throw new NullPointerException("No ha cargado correctamente la editorial");
+            throw new EditorialExcepcion("No ha cargado correctamente la editorial");
         }
         
     }

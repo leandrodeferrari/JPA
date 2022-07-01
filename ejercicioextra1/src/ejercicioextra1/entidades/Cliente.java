@@ -96,7 +96,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id =" + id + ", documentoDeIdentidad =" + documentoDeIdentidad + ", nombre =" + nombre + ", apellido =" + apellido + ", telefono =" + telefono + '}';
+        return "Cliente{" + "id = " + id + ", documentoDeIdentidad = " + documentoDeIdentidad + ", nombre = " + nombre + ", apellido = " + apellido + ", telefono = " + telefono + '}';
     }
 
 }

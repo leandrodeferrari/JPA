@@ -62,7 +62,7 @@ public class Editorial implements Serializable {
 
     @Override
     public String toString() {
-        return "Editorial{" + "id =" + id + ", nombre =" + nombre + '}';
+        return "Editorial{" + "id = " + id + ", nombre = " + nombre + '}';
     }
     
 }

@@ -1,6 +1,7 @@
 package ejercicioextra1.persistencia;
 
 import ejercicioextra1.entidades.Editorial;
+import ejercicioextra1.persistencia.excepciones.EditorialDaoExcepcion;
 
 public class EditorialDAO extends DAO<Editorial>{
     
@@ -26,7 +27,7 @@ public class EditorialDAO extends DAO<Editorial>{
         if(editorial != null){
             return editorial;
         } else {
-            throw new NullPointerException("Lo siento, no existe editorial con ese ID.");
+            throw new EditorialDaoExcepcion("Lo siento, no existe editorial con ese ID");
         }
         
     }

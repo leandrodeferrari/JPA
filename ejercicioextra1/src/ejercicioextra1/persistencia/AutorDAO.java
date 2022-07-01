@@ -1,6 +1,7 @@
 package ejercicioextra1.persistencia;
 
 import ejercicioextra1.entidades.Autor;
+import ejercicioextra1.persistencia.excepciones.AutorDaoExcepcion;
 
 public class AutorDAO extends DAO<Autor>{
     
@@ -26,7 +27,7 @@ public class AutorDAO extends DAO<Autor>{
         if(autor != null){
             return autor;
         } else {
-            throw new NullPointerException("Lo siento, no existe autor con ese ID.");
+            throw new AutorDaoExcepcion("Lo siento, no existe autor con ese ID");
         }
         
     }

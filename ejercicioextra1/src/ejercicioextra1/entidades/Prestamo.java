@@ -104,7 +104,7 @@ public class Prestamo implements Serializable {
 
     @Override
     public String toString() {
-        return "Prestamo{" + "id =" + id + ", fechaPrestamo =" + fechaPrestamo + ", fechaDevolucion =" + fechaDevolucion + ", libro =" + libro + ", cliente =" + cliente + '}';
+        return "Prestamo{" + "id = " + id + ", fechaPrestamo = " + fechaPrestamo + ", fechaDevolucion = " + fechaDevolucion + ", " + libro.toString() + ", " + cliente.toString() + '}';
     }
     
 }

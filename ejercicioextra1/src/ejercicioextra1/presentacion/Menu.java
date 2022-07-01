@@ -1,5 +1,6 @@
 package ejercicioextra1.presentacion;
 
+import ejercicioextra1.presentacion.excepciones.MenuExcepcion;
 import ejercicioextra1.servicios.*;
 import java.util.Scanner;
 
@@ -55,8 +56,8 @@ public class Menu {
 
             default:
                 ejecutarOpcionDefaultCreacion();
-                this.opcionCreacion = 0;
                 break;
+
         }
 
     }
@@ -92,6 +93,7 @@ public class Menu {
 
     private void ejecutarOpcionDefaultCreacion() {
         System.out.println("Lo siento, ha ingresado una opción inválida");
+        this.opcionCreacion = 0;
     }
 
     public void ejecutarMenu() {
@@ -99,16 +101,26 @@ public class Menu {
         while (opcionCreacion != 6) {
 
             vistaMenuCreacion();
-            this.opcionCreacion = SC.nextInt();
+
+            try {
+                this.opcionCreacion = SC.nextInt();
+            } catch (MenuExcepcion ex) {
+                throw new MenuExcepcion("Ha ingresado un valor inválido");
+            }
 
             ejecutarOpcionCreacion(opcionCreacion);
 
         }
 
-        while (opcionPrincipal != 4) {
+        while (opcionPrincipal != 3) {
 
             vistaMenuPrincipal();
-            this.opcionPrincipal = SC.nextInt();
+            
+            try {
+                this.opcionPrincipal = SC.nextInt();
+            } catch (MenuExcepcion ex) {
+                throw new MenuExcepcion("Ha ingresado un valor inválido");
+            }
 
             ejecutarMenuPrincipal(opcionPrincipal);
 
@@ -118,10 +130,9 @@ public class Menu {
 
     private void vistaMenuPrincipal() {
 
-        System.out.println("1. Registrar el préstamo de un libro");
-        System.out.println("2. Devolución de un libro");
-        System.out.println("3. Búsqueda de todos los prestamos de un Cliente");
-        System.out.println("4. Salir");
+        System.out.println("1. Devolución de un libro");
+        System.out.println("2. Búsqueda de todos los prestamos de un Cliente");
+        System.out.println("3. Salir");
 
     }
 
@@ -141,10 +152,6 @@ public class Menu {
                 ejecutarOpcion3Principal();
                 break;
 
-            case 4:
-                ejecutarOpcion4Principal();
-                break;
-
             default:
                 ejecutarOpcionDefaultPrincipal();
                 break;
@@ -154,19 +161,16 @@ public class Menu {
     }
 
     private void ejecutarOpcion1Principal() {
-
+        LibroServicio libroServicio = new LibroServicio();
+        libroServicio.devolverLibro();
     }
 
     private void ejecutarOpcion2Principal() {
-
-    }
-
-    private void ejecutarOpcion3Principal() {
         PrestamoServicio prestamoServicio = new PrestamoServicio();
         prestamoServicio.mostrarPrestamosDeUnCliente();
     }
 
-    private void ejecutarOpcion4Principal() {
+    private void ejecutarOpcion3Principal() {
         System.out.println("¡Hasta la próxima!");
     }
 

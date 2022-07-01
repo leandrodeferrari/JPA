@@ -1,6 +1,7 @@
 package ejercicioextra1.persistencia;
 
 import ejercicioextra1.entidades.Cliente;
+import ejercicioextra1.persistencia.excepciones.ClienteDaoExcepcion;
 
 public class ClienteDAO extends DAO<Cliente>{
     
@@ -26,7 +27,7 @@ public class ClienteDAO extends DAO<Cliente>{
         if(cliente != null){
             return cliente;
         } else {
-            throw new NullPointerException("Lo siento, no existe cliente con ese ID.");
+            throw new ClienteDaoExcepcion("Lo siento, no existe cliente con ese ID");
         }
         
     }

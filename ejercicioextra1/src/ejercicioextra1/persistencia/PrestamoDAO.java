@@ -1,9 +1,8 @@
 package ejercicioextra1.persistencia;
 
-import ejercicioextra1.entidades.Cliente;
 import ejercicioextra1.entidades.Prestamo;
-import java.util.ArrayList;
-import java.util.List;
+import ejercicioextra1.persistencia.excepciones.PrestamoDaoExcepcion;
+import java.util.*;
 
 public class PrestamoDAO extends DAO<Prestamo>{
     
@@ -29,7 +28,7 @@ public class PrestamoDAO extends DAO<Prestamo>{
         if(prestamo != null){
             return prestamo;
         } else {
-            throw new NullPointerException("Lo siento, no existe prestamo con ese ID.");
+            throw new PrestamoDaoExcepcion("Lo siento, no existe préstamo con ese ID");
         }
         
     }
