@@ -20,7 +20,7 @@ public class LibroDAO extends DAO<Libro>{
         super.eliminar(libro);
     }
     
-    public Libro encontrarLibroPorIsbn(Long isbn){
+    public Libro encontrarLibroPorIsbn(Long isbn) {
         
         Libro libro = this.em.find(Libro.class, isbn);
         

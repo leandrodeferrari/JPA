@@ -21,7 +21,7 @@ public class PrestamoDAO extends DAO<Prestamo>{
         super.eliminar(prestamo);
     }
  
-    public Prestamo encontrarPrestamoPorId(Integer id){
+    public Prestamo encontrarPrestamoPorId(Integer id) {
         
         Prestamo prestamo = this.em.find(Prestamo.class, id);
         
@@ -33,7 +33,7 @@ public class PrestamoDAO extends DAO<Prestamo>{
         
     }
     
-    public List<Prestamo> consultarPrestamosDeUnCliente(Integer idCliente){
+    public List<Prestamo> consultarPrestamosDeUnCliente(Integer idCliente) {
         
         List<Prestamo> prestamos = em.createQuery
         ("SELECT p FROM Prestamo p JOIN p.cliente c WHERE c.id = :idCliente")

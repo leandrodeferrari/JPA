@@ -14,7 +14,7 @@ public class ClienteServicio {
         this.CLIENTE_DAO = new ClienteDAO();
     }
     
-    public Cliente crearCliente(){
+    public Cliente crearCliente() {
         
         Long documentoIdentidad;
         String nombre, apellido, telefono;
@@ -51,7 +51,7 @@ public class ClienteServicio {
         
     }
     
-    public void ingresarCliente(){
+    public void ingresarCliente() {
         
         Cliente cliente = crearCliente();
         
@@ -63,7 +63,7 @@ public class ClienteServicio {
         
     }
  
-    public void ingresarCliente(Cliente cliente){
+    public void ingresarCliente(Cliente cliente) {
         
         if(cliente != null){
             CLIENTE_DAO.guardar(cliente);

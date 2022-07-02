@@ -14,7 +14,7 @@ public class AutorServicio {
         this.AUTOR_DAO = new AutorDAO();
     }
     
-    public Autor crearAutor(){
+    public Autor crearAutor() {
         
         String nombreAutor;
         
@@ -29,7 +29,7 @@ public class AutorServicio {
         
     }
     
-    public void ingresarAutor(){
+    public void ingresarAutor() {
         
         Autor autor = crearAutor();
         
@@ -41,7 +41,7 @@ public class AutorServicio {
         
     }
     
-    public void ingresarAutor(Autor autor){
+    public void ingresarAutor(Autor autor) {
                 
         if(autor != null){
             AUTOR_DAO.guardar(autor);

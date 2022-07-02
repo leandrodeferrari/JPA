@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ejercicioextra1">
+  <ClassDiagramComponents>
+    <Class name="Autor" package="" visibility="public" xPosition="364.0" yPosition="41.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearAutor" returnType="Autor" visibility="public"/>
+        <Method name="ingresarAutor" returnType="void" visibility="public"/>
+        <Method name="ingresarAutor" returnType="void" visibility="public">
+          <Argument type="Autor" name="autor"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Cliente" package="" visibility="public" xPosition="54.0" yPosition="12.0">
+      <Fields>
+        <Field name="documentoDeIdentidad" type="Long" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="id" type="Integer" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearCliente" returnType="Cliente" visibility="public"/>
+        <Method name="ingresarCliente" returnType="void" visibility="public"/>
+        <Method name="ingresarCliente" returnType="void" visibility="public">
+          <Argument type="Cliente" name="cliente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Editorial" package="" visibility="public" xPosition="624.0" yPosition="143.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearEditorial" returnType="Editorial" visibility="public"/>
+        <Method name="ingresarEditorial" returnType="void" visibility="public"/>
+        <Method name="ingresarEditorial" returnType="void" visibility="public">
+          <Argument type="Editorial" name="editorial"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Libro" package="" visibility="public" xPosition="85.0" yPosition="273.0">
+      <Fields>
+        <Field name="isbn" type="Long" visibility="private"/>
+        <Field name="titulo" type="String" visibility="private"/>
+        <Field name="titulo" type="Integer" visibility="private"/>
+        <Field name="anio" type="Integer" visibility="private"/>
+        <Field name="ejemplares" type="Integer" visibility="private"/>
+        <Field name="ejemplaresPrestados" type="Integer" visibility="private"/>
+        <Field name="ejemplaresRestantes" type="Integer" visibility="private"/>
+        <Field name="autor" type="Autor" visibility="private"/>
+        <Field name="editorial" type="Editorial" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearLibro" returnType="Libro" visibility="public"/>
+        <Method name="ingresarLibro" returnType="void" visibility="public"/>
+        <Method name="ingresarLibro" returnType="void" visibility="public">
+          <Argument type="Libro" name="libro"/>
+        </Method>
+        <Method name="devolverLibro" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Prestamo" package="" visibility="public" xPosition="364.0" yPosition="353.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="private"/>
+        <Field name="fechaPrestamo" type="Date" visibility="private"/>
+        <Field name="fechaDevolucion" type="Date" visibility="private"/>
+        <Field name="libro" type="Libro" visibility="private"/>
+        <Field name="cliente" type="Cliente" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearPrestamo" returnType="Prestamo" visibility="public"/>
+        <Method name="ingresarPrestamo" returnType="void" visibility="public"/>
+        <Method name="mostrarPrestamosDeUnCliente" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Menu" package="" visibility="public" xPosition="641.0" yPosition="12.0">
+      <Fields>
+        <Field name="opcionPrincipal" type="Integer" visibility="private"/>
+        <Field name="opcionCreacion" type="integer" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="DAO&lt;T&gt;" package="" visibility="public" xPosition="994.0" yPosition="190.0">
+      <Fields>
+        <Field name="EMF" type="EntityManagerFactory" visibility="protected" isFinal="true"/>
+        <Field name="em" type="EntityManager" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="conectar" returnType="void" visibility="protected"/>
+        <Method name="desconectar" returnType="void" visibility="protected"/>
+        <Method name="guardar" returnType="void" visibility="protected">
+          <Argument type="T" name="objeto"/>
+        </Method>
+        <Method name="editar" returnType="void" visibility="protected">
+          <Argument type="T" name="objeto"/>
+        </Method>
+        <Method name="eliminar" returnType="void" visibility="protected">
+          <Argument type="T" name="objeto"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AutorDAO&lt;Autor&gt;" package="" visibility="public" xPosition="938.0" yPosition="41.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarAutorPorId" returnType="Autor" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ClienteDAO&lt;Cliente&gt;" package="" visibility="public" xPosition="1171.0" yPosition="436.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarClientePorId" returnType="Cliente" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EditorialDAO&lt;Editorial&gt;" package="" visibility="public" xPosition="671.0" yPosition="334.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarEditorialPorId" returnType="Editorial" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LibroDAO&lt;Libro&gt;" package="" visibility="public" xPosition="743.0" yPosition="471.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarLibroPorIsbn" returnType="Libro" visibility="public">
+          <Argument type="Long" name="isbn"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PrestamoDAO&lt;Prestamo&gt;" package="" visibility="public" xPosition="1194.0" yPosition="162.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarPrestamoPorId" returnType="Prestamo" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="consultarPrestamosDeUnCliente" returnType="List&lt;Prestamo&gt;" visibility="public">
+          <Argument type="Integer" name="idCliente"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="Usa" source="Prestamo" target="Cliente" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="EditorialDAO&lt;Editorial&gt;" target="DAO&lt;T&gt;"/>
+    <HasRelation name="Usa" source="Libro" target="Editorial" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Menu" target="Autor" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Usa" source="Prestamo" target="Libro" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="LibroDAO&lt;Libro&gt;" target="DAO&lt;T&gt;"/>
+    <HasRelation name="Tiene" source="Menu" target="Libro" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Menu" target="Editorial" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Menu" target="Prestamo" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ClienteDAO&lt;Cliente&gt;" target="DAO&lt;T&gt;"/>
+    <HasRelation name="Usa" source="Libro" target="Autor" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Menu" target="Cliente" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="AutorDAO&lt;Autor&gt;" target="DAO&lt;T&gt;"/>
+    <IsRelation name="is" source="PrestamoDAO&lt;Prestamo&gt;" target="DAO&lt;T&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

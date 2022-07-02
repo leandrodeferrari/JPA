@@ -20,7 +20,7 @@ public class ClienteDAO extends DAO<Cliente>{
         super.eliminar(cliente);
     }
     
-    public Cliente encontrarClientePorId(Integer id){
+    public Cliente encontrarClientePorId(Integer id) {
         
         Cliente cliente = this.em.find(Cliente.class, id);
         

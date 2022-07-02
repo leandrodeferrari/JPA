@@ -20,7 +20,7 @@ public class AutorDAO extends DAO<Autor>{
         super.eliminar(autor);
     }
     
-    public Autor encontrarAutorPorId(Integer id){
+    public Autor encontrarAutorPorId(Integer id) {
         
         Autor autor = this.em.find(Autor.class, id);
         

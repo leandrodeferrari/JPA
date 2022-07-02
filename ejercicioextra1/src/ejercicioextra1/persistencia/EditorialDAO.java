@@ -20,7 +20,7 @@ public class EditorialDAO extends DAO<Editorial>{
         super.eliminar(editorial);
     }
     
-    public Editorial encontrarEditorialPorId(Integer id){
+    public Editorial encontrarEditorialPorId(Integer id) {
         
         Editorial editorial = this.em.find(Editorial.class, id);
         
