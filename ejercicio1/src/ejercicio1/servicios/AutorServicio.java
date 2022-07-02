@@ -1,21 +1,17 @@
 package ejercicio1.servicios;
 
 import ejercicio1.entidades.Autor;
-import ejercicio1.persistencia.AutorDaoExt;
-import ejercicio1.persistencia.AutorJpaController;
-import java.util.List;
-import java.util.Scanner;
+import ejercicio1.persistencia.AutorDAO;
+import ejercicio1.servicios.excepciones.AutorExcepcion;
+import java.util.*;
 
 public class AutorServicio {
 
-    Scanner leer = new Scanner(System.in).useDelimiter("\n");
-
-    private final AutorDaoExt autorDao;
-    private final AutorJpaController autorJpa;
+    private final Scanner SC = new Scanner(System.in).useDelimiter("\n");
+    private final AutorDAO autorDao;
 
     public AutorServicio() {
-        this.autorDao = new AutorDaoExt();
-        this.autorJpa = new AutorJpaController();
+        this.autorDao = new AutorDAO();
     }
 
     public Autor crearAutor() {
@@ -24,7 +20,11 @@ public class AutorServicio {
         Boolean alta = true;
 
         System.out.println("Ingrese el nombre del autor:");
-        nombreAutor = leer.next();
+        nombreAutor = SC.next();
+
+        if (nombreAutor == null || nombreAutor.trim().isEmpty()) {
+            throw new AutorExcepcion("No ha ingresado un nombre de autor válido");
+        }
 
         Autor autor = new Autor(nombreAutor, alta);
 
@@ -32,48 +32,62 @@ public class AutorServicio {
 
     }
 
-    public Autor guardarAutor() throws Exception{
+    public Autor guardarAutor() {
         Autor autor = crearAutor();
-        autorJpa.create(autor);
+
+        if (autor != null) {
+            autorDao.guardar(autor);
+        } else {
+            throw new AutorExcepcion("No ha ingresado un autor válido");
+        }
+
         return autor;
     }
-    
+
     public void darDeAltaAutor() throws Exception {
 
-        Integer id;
+        Integer id = 0;
 
-        System.out.println("Ingrese el id del autor que quiere dar de alta:");
-        id = leer.nextInt();
+        try {
+            System.out.println("Ingrese el id del autor, que quiere dar de alta:");
+            id = SC.nextInt();
+        } catch (AutorExcepcion ex) {
+            ex.printStackTrace(System.out);
+        }
 
-        Autor autorEncontrado = autorJpa.findAutor(id);
+        Autor autorEncontrado = autorDao.encontrarAutorPorId(id);
 
-        if (autorEncontrado == null) {
-            throw new NullPointerException("No existe editorial con este id");
+        if (autorEncontrado == null || id == 0) {
+            System.out.println("No existe editorial con este ID");
         } else if (autorEncontrado.isAlta()) {
-            throw new RuntimeException("Tu autor ya está dado de alta");
+            System.out.println("Tu autor ya está dado de alta");
         } else {
             autorEncontrado.setAlta(Boolean.TRUE);
-            autorJpa.edit(autorEncontrado);
+            autorDao.editar(autorEncontrado);
         }
 
     }
 
     public void darDeBajaAutor() throws Exception {
 
-        Integer id;
+        Integer id = 0;
 
-        System.out.println("Ingrese el id del autor que quiere dar de alta:");
-        id = leer.nextInt();
+        try {
+                    System.out.println("Ingrese el id del autor que quiere dar de alta:");
+        id = SC.nextInt();
+        } catch (AutorExcepcion ex) {
+            ex.printStackTrace(System.out);
+        }
 
-        Autor autorEncontrado = autorJpa.findAutor(id);
+        Autor autorEncontrado = autorDao.encontrarAutorPorId(id);
 
         if (autorEncontrado == null) {
-            throw new NullPointerException("No existe autor con ese id");
+            System.out.println("No existe autor con este ID");
         } else if (autorEncontrado.isAlta()) {
             autorEncontrado.setAlta(Boolean.FALSE);
-            autorJpa.edit(autorEncontrado);
+            autorDao.editar(autorEncontrado);
         } else {
-            throw new RuntimeException("Tu autor ya está dado de baja");
+            System.out.println("Tu autor ya está dado de baja");
         }
 
     }
@@ -83,12 +97,16 @@ public class AutorServicio {
         String nombre;
 
         System.out.println("Ingrese el nombre del autor que desea buscar");
-        nombre = leer.next();
+        nombre = SC.next();
 
+        if(nombre == null || nombre.trim().isEmpty()){
+            throw new AutorExcepcion("Ha ingresado un nombre inválido");
+        }
+        
         List<Autor> autores = autorDao.encontrarAutorPorNombre(nombre);
 
         if (autores == null) {
-            throw new NullPointerException("Lo siento, no existe un autor con ese nombre");
+            System.out.println("Lo siento, no existe un autor con ese nombre");
         } else {
             autores.forEach((autor) -> {
                 System.out.println(autor.toString());
@@ -96,11 +114,15 @@ public class AutorServicio {
         }
 
     }
-    
-    public Autor traerAutorPorId(int id){
+
+    public Autor traerAutorPorId(int id) {
         Autor autor = autorDao.encontrarAutorPorId(id);
-        System.out.println(autor);
+        
+        if(autor == null){
+            System.out.println("No hay autor con ese ID");
+        }
+        
         return autor;
     }
-    
+
 }

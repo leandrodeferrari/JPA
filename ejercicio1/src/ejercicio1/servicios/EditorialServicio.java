@@ -1,20 +1,17 @@
 package ejercicio1.servicios;
 
 import ejercicio1.entidades.Editorial;
-import ejercicio1.persistencia.EditorialDaoExt;
-import ejercicio1.persistencia.EditorialJpaController;
+import ejercicio1.persistencia.EditorialDAO;
+import ejercicio1.servicios.excepciones.EditorialExcepcion;
 import java.util.Scanner;
 
 public class EditorialServicio {
 
-    Scanner leer = new Scanner(System.in).useDelimiter("\n");
-
-    private final EditorialDaoExt editorialDao;
-    private final EditorialJpaController editorialJpa;
+    private final Scanner SC = new Scanner(System.in).useDelimiter("\n");
+    private final EditorialDAO editorialDao;
 
     public EditorialServicio() {
-        this.editorialDao = new EditorialDaoExt();
-        this.editorialJpa = new EditorialJpaController();
+        this.editorialDao = new EditorialDAO();
     }
 
     public Editorial crearEditorial() {
@@ -23,63 +20,83 @@ public class EditorialServicio {
         Boolean alta = true;
 
         System.out.println("Ingrese el nombre de la editorial");
-        nombreEditorial = leer.next();
+        nombreEditorial = SC.next();
 
-        Editorial editorial = new Editorial(nombreEditorial, alta);
+        if (nombreEditorial == null || nombreEditorial.trim().isEmpty()) {
+            throw new EditorialExcepcion("No ha ingresado un nombre válido");
+        }
 
-        return editorial;
+        return new Editorial(nombreEditorial, alta);
 
     }
 
-    public Editorial guardarEditorial() throws Exception{
+    public Editorial guardarEditorial() throws Exception {
         Editorial editorial = crearEditorial();
-        editorialJpa.create(editorial);
+
+        if (editorial == null) {
+            throw new EditorialExcepcion("No ha ingresado una editorial válida");
+        }
+        editorialDao.guardar(editorial);
+
         return editorial;
     }
-    
+
     public void darDeAltaLaEditorial() throws Exception {
 
-        Integer id;
-        
-        System.out.println("Ingrese el id de la editorial que desea dar de alta:");
-        id = leer.nextInt();
-        
-        Editorial editorial1 = editorialJpa.findEditorial(id);
+        Integer id = 0;
 
-        if (editorial1 == null) {
-            throw new NullPointerException("No existe una editorial con ese id");
-        } else if (editorial1.isAlta()) {
-            throw new RuntimeException("Tu editorial ya está dada de alta");
+        try {
+            System.out.println("Ingrese el id de la editorial que desea dar de alta:");
+            id = SC.nextInt();
+        } catch (EditorialExcepcion ex) {
+            ex.printStackTrace(System.out);
+        }
+
+        Editorial editorial = editorialDao.encontrarEditorialPorId(id);
+
+        if (editorial == null || id == 0) {
+            System.out.println("No existe una editorial con ese ID");
+        } else if (editorial.isAlta()) {
+            System.out.println("Tu editorial ya está dada de alta");
         } else {
-            editorial1.setAlta(Boolean.TRUE);
-            editorialJpa.edit(editorial1);
+            editorial.setAlta(Boolean.TRUE);
+            editorialDao.editar(editorial);
         }
 
     }
 
-    public void darDeBajaEditorial() throws Exception {
+    public void darDeBajaLaEditorial() throws Exception {
 
-        Integer id;
-        
-        System.out.println("Ingrese el id de al editorial que desea buscar:");
-        id = leer.nextInt();
-        
-        Editorial editorialEncontrada = editorialJpa.findEditorial(id);
+        Integer id = 0;
+
+        try {
+            System.out.println("Ingrese el id de al editorial que desea buscar:");
+            id = SC.nextInt();
+        } catch (EditorialExcepcion ex) {
+            ex.printStackTrace(System.out);
+        }
+
+        Editorial editorialEncontrada = editorialDao.encontrarEditorialPorId(id);
 
         if (editorialEncontrada == null) {
-            throw new NullPointerException("No existe editorial con ese id");
+            System.out.println("No existe editorial con este ID");
         } else if (editorialEncontrada.isAlta()) {
             editorialEncontrada.setAlta(Boolean.FALSE);
-            editorialJpa.edit(editorialEncontrada);
+            editorialDao.editar(editorialEncontrada);
         } else {
-            throw new RuntimeException("Tu editorial ya está dada de baja");
+            System.out.println("Tu editorial ya está dada de baja");
         }
 
     }
 
-       public Editorial traerAutorPorId(int id){
+    public Editorial traerAutorPorId(int id) {
         Editorial editorial = editorialDao.encontrarEditorialPorId(id);
+        
+        if(editorial == null){
+            System.out.println("No existe editorial con ese ID");
+        }
+        
         return editorial;
     }
-    
+
 }

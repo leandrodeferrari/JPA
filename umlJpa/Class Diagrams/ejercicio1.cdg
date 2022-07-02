@@ -2,29 +2,144 @@
 
 <ClassDiagram name="ejercicio1">
   <ClassDiagramComponents>
-    <Class name="Libro" package="" visibility="public" xPosition="202.0" yPosition="48.0">
+    <Class name="Libro" package="" visibility="public" xPosition="29.0" yPosition="14.0">
       <Fields>
-        <Field name="isbn" type="Integer" visibility="private"/>
+        <Field name="isbn" type="Long" visibility="private"/>
+        <Field name="titulo" type="String" visibility="private"/>
+        <Field name="anio" type="integer" visibility="private"/>
+        <Field name="ejemplares" type="Integer" visibility="private"/>
+        <Field name="ejemplaresPrestados" type="Integer" visibility="private"/>
+        <Field name="ejemplaresRestantes" type="Integer" visibility="private"/>
+        <Field name="alta" type="Boolean" visibility="private"/>
+        <Field name="autor" type="Autor" visibility="private"/>
+        <Field name="editorial" type="Editorial" visibility="private"/>
       </Fields>
       <Constructors/>
-      <Methods/>
+      <Methods>
+        <Method name="crearLibro" returnType="Libro" visibility="public"/>
+        <Method name="guardarLibro" returnType="void" visibility="public"/>
+        <Method name="darDeAltaLibro" returnType="void" visibility="public"/>
+        <Method name="darDeBajaLibro" returnType="void" visibility="public"/>
+        <Method name="buscarLibroPorISBN" returnType="void" visibility="public"/>
+        <Method name="buscarLibroPorTitulo" returnType="void" visibility="public"/>
+        <Method name="buscarLibroPorNombreDeAutor" returnType="void" visibility="public"/>
+        <Method name="buscarLibroPorNombreDeEditorial" returnType="void" visibility="public"/>
+      </Methods>
     </Class>
-    <Class name="Autor" package="" visibility="public" xPosition="569.0" yPosition="48.0">
-      <Fields>
-        <Field name="id" type="Integer" visibility="private"/>
-      </Fields>
-      <Constructors/>
-      <Methods/>
-    </Class>
-    <Class name="Editorial" package="" visibility="public" xPosition="360.0" yPosition="253.0">
+    <Class name="Autor" package="" visibility="public" xPosition="358.0" yPosition="208.0">
       <Fields>
         <Field name="id" type="Integer" visibility="private"/>
         <Field name="nombre" type="String" visibility="private"/>
-        <Field name="untitledField" type="Object" visibility="private"/>
+        <Field name="alta" type="Boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearAutor" returnType="Autor" visibility="public"/>
+        <Method name="guardarAutor" returnType="Autor" visibility="public"/>
+        <Method name="darDeAltaAutor" returnType="void" visibility="public"/>
+        <Method name="darDeBajaAutor" returnType="void" visibility="public"/>
+        <Method name="buscarAutorPorNombre" returnType="void" visibility="public"/>
+        <Method name="traerAutorPorId" returnType="Autor" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Editorial" package="" visibility="public" xPosition="59.0" yPosition="453.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="alta" type="Boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearEditorial" returnType="Editorial" visibility="public"/>
+        <Method name="guardarEditorial" returnType="Editorial" visibility="public"/>
+        <Method name="darDeAltaLaEditorial" returnType="void" visibility="public"/>
+        <Method name="darDeBajaLaEditorial" returnType="void" visibility="public"/>
+        <Method name="traerAutorPorId" returnType="Editorial" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DAO&lt;T&gt;" package="" visibility="public" xPosition="815.0" yPosition="26.0">
+      <Fields>
+        <Field name="EMF" type="EntityManagerFactory" visibility="protected" isFinal="true"/>
+        <Field name="em" type="EntityManager" visibility="protected" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="conectar" returnType="void" visibility="protected"/>
+        <Method name="desconectar" returnType="void" visibility="protected"/>
+        <Method name="guardar" returnType="void" visibility="protected">
+          <Argument type="T" name="objeto"/>
+        </Method>
+        <Method name="editar" returnType="void" visibility="protected">
+          <Argument type="T" name="objeto"/>
+        </Method>
+        <Method name="eliminar" returnType="void" visibility="protected">
+          <Argument type="T" name="objeto"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AutorDAO&lt;Autor&gt;" package="" visibility="public" xPosition="599.0" yPosition="265.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarAutorPorNombre" returnType="List&lt;Autor&gt;" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="encontrarAutorPorId" returnType="Autor" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LibroDAO&lt;Libro&gt;" package="" visibility="public" xPosition="1018.0" yPosition="284.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarLibroPorTitulo" returnType="List&lt;Libro&gt;" visibility="public">
+          <Argument type="String" name="titulo"/>
+        </Method>
+        <Method name="encontrarLibrosPorNombreAutor" returnType="List&lt;Libro&gt;" visibility="public">
+          <Argument type="String" name="nombreAutor"/>
+        </Method>
+        <Method name="encontrarLibrosPorNombreEditorial" returnType="List&lt;Libro&gt;" visibility="public">
+          <Argument type="String" name="nombreEditorial"/>
+        </Method>
+        <Method name="encontrarLibroPorIsbn" returnType="Libro" visibility="public">
+          <Argument type="Long" name="isbn"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EditorialDAO&lt;Editorial&gt;" package="" visibility="public" xPosition="717.0" yPosition="432.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="encontrarEditorialPorId" returnType="Editorial" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Menu" package="" visibility="public" xPosition="555.0" yPosition="14.0">
+      <Fields>
+        <Field name="opcion" type="Integer" visibility="private"/>
+        <Field name="opcionCreacion" type="Integer" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
   </ClassDiagramComponents>
-  <ClassDiagramRelations/>
+  <ClassDiagramRelations>
+    <HasRelation name="Tiene" source="Libro" target="LibroDAO&lt;Libro&gt;" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Menu" target="Libro" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Editorial" target="EditorialDAO&lt;Editorial&gt;" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Libro" target="Editorial" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="EditorialDAO&lt;Editorial&gt;" target="DAO&lt;T&gt;"/>
+    <HasRelation name="Tiene" source="Libro" target="Autor" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="AutorDAO&lt;Autor&gt;" target="DAO&lt;T&gt;"/>
+    <HasRelation name="Tiene" source="Autor" target="AutorDAO&lt;Autor&gt;" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Menu" target="Autor" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="LibroDAO&lt;Libro&gt;" target="DAO&lt;T&gt;"/>
+    <HasRelation name="Tiene" source="Menu" target="Editorial" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
 </ClassDiagram>

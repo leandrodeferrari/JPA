@@ -2,7 +2,7 @@ package ejercicio1.persistencia;
 
 import javax.persistence.*;
 
-public class Dao<T> {
+public class DAO<T> {
     
     protected final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("ejercicio1PU");
     protected EntityManager em = EMF.createEntityManager();

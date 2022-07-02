@@ -9,26 +9,19 @@ import javax.persistence.*;
 public class Libro implements Serializable{
     
     @Id
-    @Column(name = "isbn")
+    @Column(name = "ISBN")
     private Long isbn;
-    @Basic
-    @Column(name = "titulo")
     private String titulo;
-    @Column(name = "anio")
     private Integer anio;
-    @Column(name = "ejemplares")
     private Integer ejemplares;
-    @Column(name = "ejemplares_prestados")
+    @Column(name = "EJEMPLARES_PRESTADOS")
     private Integer ejemplaresPrestados;
-    @Column(name = "ejemplares_restantes")
+    @Column(name = "EJEMPLARES_RESTANTES")
     private Integer ejemplaresRestantes;
-    @Column(name = "alta")
     private Boolean alta;
     @ManyToOne(fetch = FetchType.LAZY)
-//    @Column(name = "autor")
     private Autor autor;
     @ManyToOne(fetch = FetchType.LAZY)
-//    @Column(name = "editorial")
     private Editorial editorial;
 
     public Libro() {
@@ -45,8 +38,6 @@ public class Libro implements Serializable{
         this.autor = autor;
         this.editorial = editorial;
     }
-
-    
     
     public Libro(String titulo, Integer anio, Integer ejemplares, Boolean alta, Autor autor, Editorial editorial) {
         this.titulo = titulo;
@@ -181,7 +172,7 @@ public class Libro implements Serializable{
     
     @Override
     public String toString() {
-        return "Libro{" + "isbn =" + isbn + ", titulo =" + titulo + ", anio =" + anio + ", ejemplares =" + ejemplares + ", ejemplaresPrestados =" + ejemplaresPrestados + ", ejemplaresRestantes =" + ejemplaresRestantes + ", alta =" + alta + ", autor =" + autor.toString() + ", editorial =" + editorial.toString() + '}';
+        return "Libro{" + "isbn = " + isbn + ", titulo = " + titulo + ", anio = " + anio + ", ejemplares = " + ejemplares + ", ejemplaresPrestados = " + ejemplaresPrestados + ", ejemplaresRestantes = " + ejemplaresRestantes + ", alta = " + alta + ", autor = " + autor.toString() + ", editorial = " + editorial.toString() + '}';
     }
     
 }

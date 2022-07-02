@@ -10,12 +10,9 @@ public class Editorial implements Serializable{
     
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "id_editorial")
+    @Column(name = "ID_EDITORIAL")
     private Integer id;
-    @Basic
-    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "alta")
     private Boolean alta;
 
     public Editorial() {
@@ -83,7 +80,7 @@ public class Editorial implements Serializable{
     
     @Override
     public String toString() {
-        return "Editorial{" + "id =" + id + ", nombre =" + nombre + ", alta =" + alta + '}';
+        return "Editorial{" + "id = " + id + ", nombre = " + nombre + ", alta = " + alta + '}';
     }
     
 }

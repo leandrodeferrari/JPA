@@ -7,7 +7,7 @@ import ejercicio1.servicios.AutorServicio;
 import ejercicio1.servicios.EditorialServicio;
 import java.util.List;
 
-public class LibroDaoExt extends Dao<Libro> {
+public class LibroDAO extends DAO<Libro> {
 
     @Override
     public void guardar(Libro libro) {
@@ -54,36 +54,19 @@ public class LibroDaoExt extends Dao<Libro> {
 
     }
 
-    public Autor encontrarAutorParaLibro(int id) {
+    public Libro encontrarLibroPorIsbn(Long isbn) {
 
-        AutorDaoExt autorDao = new AutorDaoExt();
-        AutorServicio autorServicio = new AutorServicio();
+        conectar();
+        Libro libro = em.find(Libro.class, isbn);
+        desconectar();
 
-        Autor autor = autorDao.encontrarAutorPorId(id);
-
-        if (autor == null) {
-            autor = autorServicio.crearAutor();
-            autorDao.guardar(autor);
+        if(libro != null){
+            return libro;
+        } else {
+            System.out.println("No existe libro con ese ISBN");
+            return new Libro();
         }
-
-        return autor;
 
     }
 
-    public Editorial encontrarEditorialParaLibro(int id) {
-
-        EditorialDaoExt editorialDao = new EditorialDaoExt();
-        EditorialServicio editorialServicio = new EditorialServicio();
-
-        Editorial editorial = editorialDao.encontrarEditorialPorId(id);
-
-        if (editorial == null) {
-            editorial = editorialServicio.crearEditorial();
-            editorialDao.guardar(editorial);
-        }
-
-        return editorial;
-
-    }
-    
 }

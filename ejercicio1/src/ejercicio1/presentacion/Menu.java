@@ -1,46 +1,52 @@
 package ejercicio1.presentacion;
 
+import ejercicio1.presentacion.excepciones.MenuExcepcion;
 import ejercicio1.servicios.*;
 import java.util.Scanner;
 
 public class Menu {
 
-    Scanner leer;
+    Scanner SC = new Scanner(System.in).useDelimiter("\n");
     private Integer opcion;
     private Integer opcionCreacion;
 
     public Menu() {
-        this.leer = new Scanner(System.in).useDelimiter("\n");
         this.opcion = 0;
         this.opcionCreacion = 0;
     }
 
-    private void vistaMenuCreacion(){
-        
+    private void vistaMenuCreacion() {
+
         System.out.println("¡Bienvenido al menú de creación de la librería!");
         System.out.println("¿Qué desea guardar?");
         System.out.println("1) Autor");
         System.out.println("2) Editorial");
         System.out.println("3) Libro");
         System.out.println("4) Salir");
-        
+
     }
-    
-    private void ejecutarMenuCreacion() throws Exception{
-        
-        while(this.opcionCreacion != 4){
-            
+
+    private void ejecutarMenuCreacion() throws Exception {
+
+        while (this.opcionCreacion != 4) {
+
             vistaMenuCreacion();
-            this.opcionCreacion = leer.nextInt();
+
+            try {
+                this.opcionCreacion = SC.nextInt();
+            } catch (MenuExcepcion ex) {
+                ex.printStackTrace(System.out);
+            }
+
             this.opcionCreacion = ejecutarOpcionDeCreacion(this.opcionCreacion);
-            
+
         }
-        
+
     }
-    
-    private int ejecutarOpcionDeCreacion(int opcionCreacion) throws Exception{
-        
-        switch(opcionCreacion){
+
+    private int ejecutarOpcionDeCreacion(int opcionCreacion) throws Exception {
+
+        switch (opcionCreacion) {
             case 1:
                 ejecutarOpcion1Creacion();
                 break;
@@ -55,40 +61,38 @@ public class Menu {
                 break;
             default:
                 ejecutarOpcionDefaultCreacion();
-                opcionCreacion = 4;
-            
+
         }
-        
+
         return opcionCreacion;
-        
+
     }
-    
-    private void ejecutarOpcion1Creacion() throws Exception{
+
+    private void ejecutarOpcion1Creacion() throws Exception {
         AutorServicio autorServicio = new AutorServicio();
         autorServicio.guardarAutor();
     }
-    
-    private void ejecutarOpcion2Creacion() throws Exception{
+
+    private void ejecutarOpcion2Creacion() throws Exception {
         EditorialServicio editorialServicio = new EditorialServicio();
         editorialServicio.guardarEditorial();
     }
-    
-    private void ejecutarOpcion3Creacion() throws Exception{
+
+    private void ejecutarOpcion3Creacion() throws Exception {
         LibroServicio libroServicio = new LibroServicio();
         libroServicio.guardarLibro();
-        
+
     }
-    
-    private void ejecutarOpcion4Creacion(){
+
+    private void ejecutarOpcion4Creacion() {
         System.out.println("Serás autodirigido al menú de la librería...");
     }
-    
-    public void ejecutarOpcionDefaultCreacion(){
+
+    public void ejecutarOpcionDefaultCreacion() {
         System.out.println("Lo siento, ha ingresado una opción inválida");
-        ejecutarOpcion4Creacion();
+        this.opcionCreacion = 0;
     }
-    
-    
+
     private void vistaMenu() {
 
         System.out.println("¡Bienvenido al menú de la librería!");
@@ -127,11 +131,17 @@ public class Menu {
     public void ejecutarMenu() throws Exception {
 
         ejecutarMenuCreacion();
-        
+
         while (this.opcion != 8) {
 
             vistaMenu();
-            this.opcion = leer.nextInt();
+
+            try {
+                this.opcion = SC.nextInt();
+            } catch (MenuExcepcion ex) {
+                ex.printStackTrace(System.out);
+            }
+
             this.opcion = ejecutarOpcion(opcion);
 
         }
@@ -167,7 +177,7 @@ public class Menu {
                 break;
             default:
                 ejecutarOpcionDefault();
-                opcion = 8;
+                
         }
 
         return opcion;
@@ -201,13 +211,25 @@ public class Menu {
 
     private void ejecutarOpcion6() throws Exception {
         vistaMenuAlta();
-        this.opcion = leer.nextInt();
+
+        try {
+            this.opcion = SC.nextInt();
+        } catch (MenuExcepcion ex) {
+            ex.printStackTrace(System.out);
+        }
+
         this.opcion = ejecutarOpcionAlta(this.opcion);
     }
 
     private void ejecutarOpcion7() throws Exception {
         vistaMenuBaja();
-        this.opcion = leer.nextInt();
+
+        try {
+            this.opcion = SC.nextInt();
+        } catch (MenuExcepcion ex) {
+            ex.printStackTrace(System.out);
+        }
+
         this.opcion = ejecutarOpcionBaja(this.opcion);
     }
 
@@ -217,7 +239,7 @@ public class Menu {
 
     private void ejecutarOpcionDefault() {
         System.out.println("Lo siento, ha ingresado una opción inválida");
-        ejecutarOpcion8();
+        this.opcion = 0;
     }
 
     private int ejecutarOpcionAlta(int opcion) throws Exception {
@@ -237,7 +259,7 @@ public class Menu {
                 break;
             default:
                 ejecutarOpcionDefault();
-                opcion = 8;
+                
         }
 
         return opcion;
@@ -279,7 +301,7 @@ public class Menu {
                 break;
             default:
                 ejecutarOpcionDefault();
-                opcion = 8;
+                
         }
 
         return opcion;
@@ -293,11 +315,12 @@ public class Menu {
 
     private void ejecutarOpcion2Baja() throws Exception {
         EditorialServicio editorialServicio = new EditorialServicio();
-        editorialServicio.darDeBajaEditorial();
+        editorialServicio.darDeBajaLaEditorial();
     }
 
     private void ejecutarOpcion3Baja() throws Exception {
         LibroServicio libroServicio = new LibroServicio();
         libroServicio.darDeBajaLibro();
     }
+
 }

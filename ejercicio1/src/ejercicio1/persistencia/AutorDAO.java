@@ -3,7 +3,7 @@ package ejercicio1.persistencia;
 import ejercicio1.entidades.Autor;
 import java.util.List;
 
-public class AutorDaoExt extends Dao<Autor>{
+public class AutorDAO extends DAO<Autor>{
     
     @Override
     public void guardar(Autor autor){
@@ -20,9 +20,10 @@ public class AutorDaoExt extends Dao<Autor>{
         super.eliminar(autor);
     }
     
-    public List<Autor> encontrarAutorPorNombre(String nombre){
+    public List<Autor> encontrarAutorPorNombre(String nombre) {
         
         conectar();
+        
         List<Autor> autores = em.createQuery
         ("SELECT a FROM Autor a WHERE a.nombre = :nombre").setParameter("nombre", nombre).getResultList();
         desconectar();
@@ -31,12 +32,14 @@ public class AutorDaoExt extends Dao<Autor>{
         
     }
     
-    public Autor encontrarAutorPorId(int id){
+    public Autor encontrarAutorPorId(int id) {
+        
         conectar();
+        
         Autor autor = (Autor) em.createQuery
         ("SELECT a FROM Autor a WHERE a.id = :id").setParameter("id", id).getSingleResult();
         desconectar();
-        System.out.println(autor);
+
         return autor;
         
     }
